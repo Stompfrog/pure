@@ -682,7 +682,11 @@ $p.libs = {
 		}
 		jQuery.fn.extend({
 			compile:function(directive, ctxt){ return $p(this[0]).compile(directive, ctxt); },
-			render:function(ctxt, directive){ return jQuery( $p( this[0] ).render( ctxt, directive ) ); },
+			render:function(ctxt, directive){ 
+				return this.each(function() {
+ 					jQuery( $p( $(this)[0] ).render( ctxt, directive ) );
+ 				});
+ 			},
 			autoRender:function(ctxt, directive){ return jQuery( $p( this[0] ).autoRender( ctxt, directive ) ); }
 		});
 	},
